@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой опыт работы с Cresen Ltd</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it@12.3.0/dist/markdown-it.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Мой опыт работы с Cresen Ltd</h1>
+        <!-- Здесь будет отображаться контент README.md -->
+        <div id="content"></div>
+    </div>
+
+    <script>
+        // Используем Markdown-it для преобразования markdown в HTML
+        const md = window.markdownit();
+        
+        // Прочитаем README.md с помощью fetch и конвертируем в HTML
+        fetch('README.md')
+            .then(response => response.text())
+            .then(text => {
+                // Конвертируем текст в HTML
+                const htmlContent = md.render(text);
+                // Вставляем HTML в контейнер
+                document.getElementById('content').innerHTML = htmlContent;
+            })
+            .catch(err => {
+                console.error('Ошибка при загрузке README.md:', err);
+            });
+    </script>
+</body>
+</html>
